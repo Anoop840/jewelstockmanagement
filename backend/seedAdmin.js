@@ -8,13 +8,12 @@ connectDB();
 
 const seed = async () => {
   try {
-    // Clean up any existing admin users
     await Admin.deleteMany({ email: 'admin@jewelstock.com' });
 
     const initialAdmin = new Admin({
       name: 'Manager Administrator',
       email: 'admin@jewelstock.com',
-      password: 'password123', 
+      password: 'admin@1234', 
     });
 
     await initialAdmin.save();
