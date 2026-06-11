@@ -33,7 +33,41 @@ export const createProduct = async (req, res) => {
   }
 };
 
+export const getDashboardStats = async (req, res) => {
+  try {
+    const products = await Product.find({});
+    
+    let totalInVaultStock = 0;
+
+    products.forEach((product) => {
+      if (product.variants && Array.isArray(product.variants)) {
+        product.variants.forEach((variant) => {
+          // FIXED: Changed from variant.stock or variant.quantity to variant.stockInHouse
+          totalInVaultStock += Number(variant.stockInHouse) || 0;
+        });
+      }
+    });
+
+    res.status(200).json({
+      totalInVaultStock,
+      activeSellers: 0,       // or your actual database counts
+      totalOutstandingCredit: 0
+    });
+
+  } catch (error) {
+    res.status(500).json({ message: "Error calculating metrics", error: error.message });
+  }
+};
+
 export const getProducts = async (req, res) => {
+
+  let totalStock = 0;
+  products.forEach(product => {
+    product.variants.forEach(variant => {
+      // ⚠️ Check this property name carefully!
+      totalStock += variant.stock || 0; 
+    });
+  });
   try {
     const products = await Product.find({});
     res.status(200).json(products);

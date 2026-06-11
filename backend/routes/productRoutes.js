@@ -1,5 +1,5 @@
 import express from 'express';
-import { createProduct, getProducts } from '../controllers/productController.js';
+import { createProduct, getProducts, getDashboardStats } from '../controllers/productController.js';
 import upload from '../middleware/upload.js';
 import Seller from '../models/Seller.js';
 
@@ -42,5 +42,7 @@ router.get('/dashboard-stats', async (req, res) => {
     res.status(500).json({ message: 'Server error calculating dashboard stats', error: error.message });
   }
 });
+
+router.get('/stats', getDashboardStats);
 
 export default router;
