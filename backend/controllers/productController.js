@@ -1,5 +1,7 @@
 import Product from '../models/Product.js';
 
+// @desc    Create a new product catalog item
+// @route   POST /api/products
 export const createProduct = async (req, res) => {
   try {
     const { itemCode, title, category, description, variants } = req.body;
@@ -33,6 +35,8 @@ export const createProduct = async (req, res) => {
   }
 };
 
+// @desc    Calculate live aggregated counters for the metrics dashboard 
+// @route   GET /api/products/stats
 export const getDashboardStats = async (req, res) => {
   try {
     const products = await Product.find({});
@@ -42,7 +46,6 @@ export const getDashboardStats = async (req, res) => {
     products.forEach((product) => {
       if (product.variants && Array.isArray(product.variants)) {
         product.variants.forEach((variant) => {
-          // FIXED: Changed from variant.stock or variant.quantity to variant.stockInHouse
           totalInVaultStock += Number(variant.stockInHouse) || 0;
         });
       }
@@ -50,7 +53,7 @@ export const getDashboardStats = async (req, res) => {
 
     res.status(200).json({
       totalInVaultStock,
-      activeSellers: 0,       // or your actual database counts
+      activeSellers: 0,       
       totalOutstandingCredit: 0
     });
 
@@ -59,15 +62,9 @@ export const getDashboardStats = async (req, res) => {
   }
 };
 
+// @desc    Fetch all stored catalog items for the Inventory Master sheet
+// @route   GET /api/products
 export const getProducts = async (req, res) => {
-
-  let totalStock = 0;
-  products.forEach(product => {
-    product.variants.forEach(variant => {
-      // ⚠️ Check this property name carefully!
-      totalStock += variant.stock || 0; 
-    });
-  });
   try {
     const products = await Product.find({});
     res.status(200).json(products);

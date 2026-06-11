@@ -4,13 +4,18 @@ import { Gem, Users, History, RefreshCw } from 'lucide-react';
 import axios from 'axios';
 
 export default function Home() {
-  const [stats, setStats] = useState({ totalInHouse: 0, totalSellers: 0, totalOutstanding: 0 });
+  const [stats, setStats] = useState({ 
+      totalInVaultStock: 0, 
+      activeSellers: 0, 
+      totalOutstandingCredit: 0 
+  });  
+  
   const [loading, setLoading] = useState(true);
 
   const fetchStats = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/products/dashboard-stats');
+      const response = await axios.get('http://localhost:5000/api/products/stats');
       setStats(response.data);
     } catch (error) {
       console.error("Error loading dashboard metrics:", error);
@@ -29,7 +34,7 @@ export default function Home() {
   fetchStats();
   }, []);
 
-  return (
+return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
@@ -47,7 +52,8 @@ export default function Home() {
           <div>
             <p className="text-xs font-medium uppercase text-slate-500 tracking-wider">Total In-Vault Stock</p>
             <p className="text-3xl font-bold text-slate-900 mt-1">
-              {loading ? "..." : `${stats.totalInHouse} pcs`}
+              {/* FIXED: Changed from stats.totalInHouse to stats.totalInVaultStock */}
+              {loading ? "..." : `${stats.totalInVaultStock || 0} pcs`}
             </p>
           </div>
           <div className="p-3 bg-amber-50 rounded-lg text-amber-600">
@@ -59,7 +65,8 @@ export default function Home() {
           <div>
             <p className="text-xs font-medium uppercase text-slate-500 tracking-wider">Active Sellers / Agents</p>
             <p className="text-3xl font-bold text-slate-900 mt-1">
-              {loading ? "..." : `${stats.totalSellers} active`}
+              {/* FIXED: Changed from stats.totalSellers to stats.activeSellers */}
+              {loading ? "..." : `${stats.activeSellers || 0} active`}
             </p>
           </div>
           <div className="p-3 bg-blue-50 rounded-lg text-blue-600">
@@ -71,7 +78,8 @@ export default function Home() {
           <div>
             <p className="text-xs font-medium uppercase text-slate-500 tracking-wider">Total Outstanding Credit</p>
             <p className="text-3xl font-bold text-amber-600 mt-1">
-              {loading ? "..." : `${stats.totalOutstanding} pcs`}
+              {/* FIXED: Changed from stats.totalOutstanding to stats.totalOutstandingCredit */}
+              {loading ? "..." : `${stats.totalOutstandingCredit || 0} pcs`}
             </p>
           </div>
           <div className="p-3 bg-rose-50 rounded-lg text-rose-600">
