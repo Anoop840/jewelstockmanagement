@@ -1,12 +1,7 @@
 import express from 'express';
-<<<<<<< HEAD
-import { createProduct, getProducts } from '../controllers/productController.js';
-import upload from '../middleware/upload.js';
-=======
 import { createProduct, getProducts, getDashboardStats } from '../controllers/productController.js';
 import upload from '../middleware/upload.js';
 import Seller from '../models/Seller.js';
->>>>>>> 8ba7fcc72d2f3f230a8061448fcc36072d81ffbc
 
 const router = express.Router();
 
@@ -16,8 +11,6 @@ router.route('/')
   .post(upload.array('images', 5), createProduct)
   .get(getProducts);
 
-<<<<<<< HEAD
-=======
 router.get('/dashboard-stats', async (req, res) => {
   try {
     const products = await Product.find({});
@@ -52,5 +45,4 @@ router.get('/dashboard-stats', async (req, res) => {
 
 router.get('/stats', getDashboardStats);
 
->>>>>>> 8ba7fcc72d2f3f230a8061448fcc36072d81ffbc
 export default router;

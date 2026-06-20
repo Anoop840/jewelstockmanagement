@@ -1,10 +1,7 @@
 import Product from '../models/Product.js';
 
-<<<<<<< HEAD
-=======
 // @desc    Create a new product catalog item
 // @route   POST /api/products
->>>>>>> 8ba7fcc72d2f3f230a8061448fcc36072d81ffbc
 export const createProduct = async (req, res) => {
   try {
     const { itemCode, title, category, description, variants } = req.body;
@@ -38,8 +35,6 @@ export const createProduct = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
-=======
 // @desc    Calculate live aggregated counters for the metrics dashboard 
 // @route   GET /api/products/stats
 export const getDashboardStats = async (req, res) => {
@@ -69,7 +64,6 @@ export const getDashboardStats = async (req, res) => {
 
 // @desc    Fetch all stored catalog items for the Inventory Master sheet
 // @route   GET /api/products
->>>>>>> 8ba7fcc72d2f3f230a8061448fcc36072d81ffbc
 export const getProducts = async (req, res) => {
   try {
     const products = await Product.find({});

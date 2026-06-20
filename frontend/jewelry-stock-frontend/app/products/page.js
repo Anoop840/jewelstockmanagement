@@ -11,11 +11,7 @@ export default function ProductsPage() {
   const [description, setDescription] = useState('');
   const [images, setImages] = useState([]);
   
-<<<<<<< HEAD
-  // Variants Array State (Initially starts with one blank color block)
-=======
   // MATCHED WITH SCHEMA: Changed 'stock' to 'stockInHouse'
->>>>>>> 8ba7fcc72d2f3f230a8061448fcc36072d81ffbc
   const [variants, setVariants] = useState([
     { color: '', sku: '', stockInHouse: 0, details: '' }
   ]);
@@ -27,11 +23,7 @@ export default function ProductsPage() {
     setVariants(updatedVariants);
   };
 
-<<<<<<< HEAD
-  // Add a new blank variant input row
-=======
   // MATCHED WITH SCHEMA: Using 'stockInHouse' here too
->>>>>>> 8ba7fcc72d2f3f230a8061448fcc36072d81ffbc
   const addVariantRow = () => {
     setVariants([...variants, { color: '', sku: '', stockInHouse: 0, details: '' }]);
   };
@@ -76,10 +68,7 @@ export default function ProductsPage() {
       setItemCode('');
       setTitle('');
       setDescription('');
-<<<<<<< HEAD
-=======
       // MATCHED WITH SCHEMA: Reset cleanly using 'stockInHouse'
->>>>>>> 8ba7fcc72d2f3f230a8061448fcc36072d81ffbc
       setVariants([{ color: '', sku: '', stockInHouse: 0, details: '' }]);
       setImages([]);
     } catch (error) {
@@ -153,21 +142,6 @@ export default function ProductsPage() {
               <div key={index} className="flex gap-3 items-end border border-slate-100 p-3 bg-slate-50/50 rounded-lg">
                 <div className="flex-1">
                   <label className="block text-[10px] font-semibold uppercase text-slate-500 mb-1">Color Name</label>
-<<<<<<< HEAD
-                  <input type="text" required placeholder="e.g. Rose Gold" value={variant.color} onChange={(e) => handleVariantChange(index, 'color', e.target.value)} className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-white focus:outline-none"/>
-                </div>
-                <div className="flex-1">
-                  <label className="block text-[10px] font-semibold uppercase text-slate-500 mb-1">Variant SKU</label>
-                  <input type="text" required placeholder="e.g. GG101-ROSE" value={variant.sku} onChange={(e) => handleVariantChange(index, 'sku', e.target.value)} className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-white focus:outline-none"/>
-                </div>
-                <div className="w-28">
-                  <label className="block text-[10px] font-semibold uppercase text-slate-500 mb-1">Vault Stock</label>
-                  <input type="number" required min="0" value={variant.stockInHouse} onChange={(e) => handleVariantChange(index, 'stockInHouse', parseInt(e.target.value) || 0)} className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-white focus:outline-none"/>
-                </div>
-                <div className="flex-[1.5]">
-                  <label className="block text-[10px] font-semibold uppercase text-slate-500 mb-1">Details/Notes</label>
-                  <input type="text" placeholder="Purity, layout information..." value={variant.details} onChange={(e) => handleVariantChange(index, 'details', e.target.value)} className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-white focus:outline-none"/>
-=======
                   <input type="text" required placeholder="e.g. Rose Gold" value={variant.color || ''} onChange={(e) => handleVariantChange(index, 'color', e.target.value)} className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-white focus:outline-none"/>
                 </div>
                 <div className="flex-1">
@@ -182,7 +156,6 @@ export default function ProductsPage() {
                 <div className="flex-[1.5]">
                   <label className="block text-[10px] font-semibold uppercase text-slate-500 mb-1">Details/Notes</label>
                   <input type="text" placeholder="Purity, layout information..." value={variant.details || ''} onChange={(e) => handleVariantChange(index, 'details', e.target.value)} className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs bg-white focus:outline-none"/>
->>>>>>> 8ba7fcc72d2f3f230a8061448fcc36072d81ffbc
                 </div>
                 <button type="button" disabled={variants.length === 1} onClick={() => removeVariantRow(index)} className="p-2 border border-slate-200 rounded-lg text-slate-400 hover:text-rose-600 hover:border-rose-100 disabled:opacity-30 disabled:hover:text-slate-400 disabled:hover:border-slate-200 bg-white transition-all">
                   <Trash2 className="h-4 w-4" />
